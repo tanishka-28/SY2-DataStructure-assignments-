@@ -1,0 +1,47 @@
+
+#include <iostream>
+using namespace std;
+int main() {
+    int city=3,months=4,i,j;
+    float avg[city],total=0.0;
+    float rainfall[city][months];
+    string citynames[city];
+    // input of cities and months 
+    for(i=0;i<city;i++){
+        cout<<"Enter the name of city "<<(i+1)<<":";
+        cin>>citynames[i];
+        for (j=0;j<months;j++){
+            cout<<"Enter the rainfall(in mm) for month"<<(j+1)<<":";
+            cin>>rainfall[i][j];
+        }
+    }
+    //calculating the average 
+    for(i=0;i<city;i++){
+        total=0.0;
+        for(j=0;j<months;j++){
+            total+=rainfall[i][j];
+        }
+        avg[i]=total/months;
+    }
+    //for arranging it in a tabular form 
+    cout<<"\n Rainfall Data (in mm)--\n";
+    cout<<"==============================================================\n";
+    cout<<"city\t\t";
+    for(j=0;j<months;j++){
+        cout<<"Month"<<(j+1)<<"\t\t";
+    }
+    
+    //average 
+    cout<<" Average\n";
+     cout<<"==============================================================\n";
+    for(i=0;i<city;i++){
+         cout<<citynames[i]<<"\t\t";
+         for(j=0;j<months;j++){
+             cout<<rainfall[i][j]<<"\t\t";
+        }
+        cout<<avg[i]<<"\n";
+         cout<<"==============================================================\n";
+    }
+    
+    return 0;
+}
