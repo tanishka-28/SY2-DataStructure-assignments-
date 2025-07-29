@@ -1,0 +1,46 @@
+#include <iostream>
+using namespace std;
+int main() {
+    int city=3,days=7,i,j;
+    float avg[city],total=0.0;
+    float temp[city][days];
+    string citynames[city];
+    // input of cities and days  
+    for(i=0;i<city;i++){
+        cout<<"Enter the name of city "<<(i+1)<<":";
+        cin>>citynames[i];
+        for (j=0;j<days;j++){
+            cout<<"Enter the Temperature(in celcius) for day"<<(j+1)<<":";
+            cin>>temp[i][j];
+        }
+    }
+    //calculating the average 
+    for(i=0;i<city;i++){
+        total=0.0;
+        for(j=0;j<days;j++){
+            total+=temp[i][j];
+        }
+        avg[i]=total/days;
+    }
+    //for arranging it in a tabular form 
+    cout<<"\n Temperature Data (in celcius)--\n";
+    cout<<"==========================================================================================\n";
+    cout<<"city\t\t";
+    for(j=0;j<days;j++){
+        cout<<"Day"<<(j+1)<<"\t\t";
+    }
+    
+    //average 
+    cout<<" Average\n";
+     cout<<"==========================================================================================\n";
+    for(i=0;i<city;i++){
+         cout<<citynames[i]<<"\t\t";
+         for(j=0;j<days;j++){
+             cout<<temp[i][j]<<"\t\t";
+        }
+        cout<<avg[i]<<"\n";
+         cout<<"=======================================================================================\n";
+    }
+    
+    return 0;
+}
