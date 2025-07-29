@@ -1,0 +1,90 @@
+#include <iostream>
+using namespace std;
+int main() {
+    int i,j,temp;
+    int score1[5];
+    int score2[5];
+    //input of scores for player 1
+    cout<<"Enter the score for each day for player 1:\n";
+    for(i=0;i<5;i++)
+    {
+		cout<<"day" <<(i+1)<<"=";
+        cin>>score1[i];
+    }
+    //to sort 
+    cout<<"Sorting the scores.......\n";
+    for(i=0;i<5-1;i++)
+    {
+		for(j=0;j<5-i-1;j++)
+		{
+			if(score1[j]<score1[j+1])
+			{
+				//swap the numbers
+				temp=score1[j];
+				score1[j]=score1[j+1];
+				score1[j+1]=temp;
+				
+			
+			}
+		}
+		
+	}
+				
+  //display the scores 
+  cout<<"The sorted score is :\n";
+  for(i=0;i<5;i++)
+  {
+	  cout<<score1[i]<<"\t";
+  }
+  
+  
+  
+   //input of scores for player2 
+    cout<<"\nEnter the score for each day for player 2:\n";
+    for(i=0;i<5;i++)
+    {
+		cout<<"day" <<(i+1)<<"=";
+        cin>>score2[i];
+    }
+    //to sort 
+    cout<<"Sorting the scores.......\n";
+    for(i=0;i<5-1;i++)
+    {
+		for(j=0;j<5-i-1;j++)
+		{
+			if(score2[j]<score2[j+1])
+			{
+				//swap the numbers
+				temp=score2[j];
+				score2[j]=score2[j+1];
+				score2[j+1]=temp;
+				
+			
+			}
+		}
+		
+	}
+				
+  //display the scores 
+  cout<<"The sorted score is :\n";
+  for(i=0;i<5;i++)
+  {
+	  cout<<score2[i]<<"\t";
+  }
+  //displaying the winner
+  cout<<"\nHeres the winner.......\n";
+  if(score1[0]>score2[0])
+  {
+	  cout<<"\nThe Player 1 is the Winner!!"<<"with score " <<score1[0];
+  }
+  else if (score1[0]==score2[0]){
+	  cout<<"ITS A TIE"<<"with score "<<score1[0];
+	  
+  }
+  else
+  {
+	 cout<<"\nThe Player 2 is the Winner!!"<<"with score " <<score2[0]; 
+  }
+  
+    return 0;
+}
