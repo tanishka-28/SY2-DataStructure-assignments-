@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+int server, req = 0;
+int server_index;
+cout << "HERE THE LOAD WILL BE BALANCED\n";
+cout << "Enter the number of servers: ";
+cin >> server;
+cout << "Enter the number of requests: ";
+cin >> req;
+// Declare array based on the number of requests
+int client[req];
+// Array to track if a server is already handling a request (0 = free, 1 = occupied)
+int server_status[server] = {0};
+// Taking values for request IDs
+cout << "Enter the request id's: " << endl;
+for (int i = 0; i < req; i++)
+{
+cin >> client[i];
+}
+// Compute server allocation
+char a;
+int i = 0;
+while (i < req)
+{
+cout << "Requests will be assigned till you say quit(Q) or say proceed(p)\n";
+cout << "a= ";
+cin >> a;
+if (a == 'Q' || a == 'q')
+{
+break;
+}
+else if (a == 'p' || a == 'P')
+{
+server_index = client[i] % server;
+// Linear probing to find next available server
+int start_index = server_index;
+while (server_status[server_index] == 1)
+{
+server_index = (server_index + 1) % server;
+if (server_index == start_index)
+{
+cout << "All servers are currently occupied. Cannot assign request " << client[i] <<
+endl;
+break;
+}
+}
+// If a free server was found
+if (server_status[server_index] == 0)
+{
+server_status[server_index] = 1; // Mark server as occupied
+cout << "Server " << server_index << " is handling request " << client[i] << endl;
+}
+i++;
+}
+else
+{
+cout << "INVALID INPUT" << endl;
+}
+}
+return 0;
+}
