@@ -1,0 +1,63 @@
+#include<iostream>
+using namespace std;
+class Node {
+	public :
+	string task;
+	int priority;
+	int time;
+	Node*next;
+	void display();
+	void insert(Node*,Node*);
+	//parameterised constructor 
+	Node(string m,int p, int e)
+	{
+		task=m;
+		priority=p;
+		time=e;
+		next=NULL;
+	}
+};
+void Node :: display()
+{
+	//cout<<"Task name :"<<task<<endl;
+	cout<<priority<<"-->"<<" ";
+	//cout<<"Execution time:"<<time<<endl;
+}
+void Node:: insert(Node*h,Node*t)
+{
+	Node*t1=h;
+	while(t1->next!=NULL)
+	{
+		t1=t1->next;
+	}
+	t1->next=t;
+}
+int main ()
+{
+	int i,n,p,e;
+	string m;
+	Node*header=NULL,*temp=NULL;
+	cout<<"How many nodes you want to insert in the linked list :";
+	cin>>n;
+	for(i=0;i<n;i++)
+	{
+		cout<<"Enter task details (taskname, priority, execution time):";
+		cin>>m>>p>>e;
+		if(header==NULL)
+		{
+			header=new Node(m,p,e);
+		}
+		else {
+			temp=new Node(m,p,e);
+			header->insert(header,temp);
+		}
+	}
+	temp=header;
+	for(i=0;i<n;i++)
+	{
+		temp->display();
+		temp=temp->next;
+	}
+	cout<<"NULL";
+	return 0;
+}
