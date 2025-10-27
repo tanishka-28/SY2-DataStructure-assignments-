@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+int is_balanced(string expression) {
+    string stack = "(A+B{C}";
+    int max_len = 1000;  // max length for stack, can be adjusted
+    
+    for (int i = 0; i < (int)expression.length(); i++) {
+        char ch = expression[i];
+        
+        if (ch == '(' || ch == '{' || ch == '[') {
+            if ((int)stack.length() == max_len) {
+                // Stack overflow
+                return 0;
+            }
+            stack.push_back(ch);
+        } else if (ch == ')' || ch == '}' || ch == ']') {
+            if (stack.length() == 0) {
+                return 0;
+            }
+            char top = stack.back();
+            
+            if ((ch == ')' && top != '(') ||
+                (ch == '}' && top != '{') ||
+                (ch == ']' && top != '[')) {
+                return 0;
+            }
+            stack.pop_back();
+        }
+    }
+    
+    if (stack.length() == 0)
+        return 1;
+    else
+        return 0;
+}
+
+int main() {
+    string expr = "{[()()]}";
+    if (is_balanced(expr) == 1)
+        cout << "Balanced" << endl;
+    else
+        cout << "Unbalanced" << endl;
+    
+    return 0;
+}
