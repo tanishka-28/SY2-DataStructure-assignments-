@@ -1,0 +1,44 @@
+#include <iostream>
+using namespace std;
+
+#define MAX 10
+
+int adj[MAX][MAX];   // adjacency matrix
+int visited[MAX];    // visited array
+int n;               // number of web pages
+
+void DFS(int page) {
+    cout << "Page" << page << " ";
+    visited[page] = 1;
+
+    for (int i = 0; i < n; i++) {
+        if (adj[page][i] == 1 && !visited[i]) {
+            DFS(i);
+        }
+    }
+}
+
+int main() {
+    cout << "Enter number of web pages: ";
+    cin >> n;
+
+    cout << "Enter adjacency matrix (1 = link exists, 0 = no link):\n";
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            cin >> adj[i][j];
+        }
+    }
+
+    for (int i = 0; i < n; i++)
+        visited[i] = 0;
+
+    int start;
+    cout << "Enter starting page (0-" << n - 1 << "): ";
+    cin >> start;
+
+    cout << "\nIndexing order (DFS): ";
+    DFS(start);
+
+    cout << endl;
+    return 0;
+}
